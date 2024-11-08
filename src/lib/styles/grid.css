@@ -1,0 +1,7 @@
+.cell {
+    background-color: black;
+}
+
+.cell[data-cooperator="true"] {
+    background-color: white;
+}
