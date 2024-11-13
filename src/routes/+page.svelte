@@ -112,18 +112,39 @@
 
     $effect(() => {
         const intervalId = setInterval(async () => {
+            await tick();
             calculatePayoffs();
             await tick();
             updateStrategy();
         }, intervalMs);
-
         return () => clearInterval(intervalId);
+
+        // (async () => {
+        //     for (let i = 0; i < 10; i++) {
+        //         await new Promise((r) => setInterval(r, 1000))
+        //         await tick();
+        //         calculatePayoffs();
+        //         await tick();
+        //         updateStrategy();
+        //     }
+        // })();
     })
+
+    const handleReset = async () => {
+        numRows = 0;
+        numCols = 0;
+        await tick();
+        initializeGrid();
+    }
 </script>
+
+<button on:click={handleReset} class={`absolute top-2 right-2 px-8 py-2 bg-neutral-700/10 rounded-md border border-neutral-500 text-neutral-500`}>
+    Reset
+</button>
 
 <div
     bind:this={wrapper}
-    class={`h-dvh w-dvw grid`}
+    class={`h-dvh w-dvw bg-neutral-500 grid`}
     style={`grid-template-rows: repeat(var(--rows), 1fr); grid-template-columns: repeat(var(--cols), 1fr);`}
 >
     {#each Array(numRows * numCols) as _, index (index)}
@@ -132,7 +153,7 @@
             id={`${Math.floor(index / numCols)}-${Math.floor(index % numCols)}`}
             data-strategy={index === Math.floor(numRows * numCols / 2) ? 'd' : 'c'}
             data-payoff={0}
-            class={`cell`}
+            class={`cell h-full w-full`}
         ></div>
     {/each}
 </div>

@@ -1,5 +1,6 @@
 .cell {
     background-color: black;
+    border-radius: 1px;
 }
 
 .cell[data-strategy="c"] {
