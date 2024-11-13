@@ -2,6 +2,6 @@
     background-color: black;
 }
 
-.cell[data-cooperator="true"] {
+.cell[data-strategy="c"] {
     background-color: white;
 }
