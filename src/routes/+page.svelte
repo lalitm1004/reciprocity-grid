@@ -138,7 +138,7 @@
     }
 </script>
 
-<button on:click={handleReset} class={`absolute top-2 right-2 px-8 py-2 bg-neutral-700/10 rounded-md border border-neutral-500 text-neutral-500`}>
+<button onclick={handleReset} class={`absolute top-2 right-2 px-8 py-2 bg-neutral-700/10 rounded-md border border-neutral-500 text-neutral-500`}>
     Reset
 </button>
 
